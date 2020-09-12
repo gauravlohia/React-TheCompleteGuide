@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.css";
-import Person from "../components/PersonList/Person/Person";
+import PersonList from "../components/PersonList/PersonList";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -46,47 +47,27 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = [classes.button];
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                deleteHandler={this.deletePersonHandler.bind(this, index)}
-                changed={(Event) => this.nameChangeHandler(Event, person.id)}
-              />
-            );
-          })}
+          <PersonList 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}
+          />
         </div>
       );
-
-      btnClass.push(classes.red);
     }
 
-    let assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
+    
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(" ")}>
-          The stylesheets are now working.
-        </p>
-        <button
-          className={btnClass.join(" ")}
-          onClick={this.togglePersonsHandler}
-        >
-          Toggle
-        </button>
+        <Cockpit 
+          persons={this.state.persons}
+          showPersons={this.state.showPersons}
+          toggle={this.togglePersonsHandler}
+        />
         {persons}
       </div>
     );
