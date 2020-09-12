@@ -16,12 +16,6 @@ import classes from "./Person.css";
 // `;
 
 const person = (props) => {
-  // const style = {
-  //   "@media (width: 500px)": {
-  //     width: "450px",
-  //     background: "steelblue",
-  //   },
-  // };
   return (
     <div className={classes.Person}>
       <p>

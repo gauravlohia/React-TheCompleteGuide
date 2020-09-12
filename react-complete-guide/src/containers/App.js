@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from "./App.css";
-import Person from "./Person/Person";
+import Person from "../components/PersonList/Person/Person";
 
 class App extends Component {
   state = {
@@ -55,8 +55,8 @@ class App extends Component {
               <Person
                 name={person.name}
                 age={person.age}
-                deleteHandler={this.deletePersonHandler.bind(this, index)}
                 key={person.id}
+                deleteHandler={this.deletePersonHandler.bind(this, index)}
                 changed={(Event) => this.nameChangeHandler(Event, person.id)}
               />
             );
@@ -64,7 +64,7 @@ class App extends Component {
         </div>
       );
 
-      btnClass.push(classes.red)
+      btnClass.push(classes.red);
     }
 
     let assignedClasses = [];
@@ -78,8 +78,13 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(' ')}>The stylesheets are now working.</p>
-        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>
+        <p className={assignedClasses.join(" ")}>
+          The stylesheets are now working.
+        </p>
+        <button
+          className={btnClass.join(" ")}
+          onClick={this.togglePersonsHandler}
+        >
           Toggle
         </button>
         {persons}
